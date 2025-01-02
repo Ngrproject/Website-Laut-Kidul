@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Akun</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .left-section {
+            flex: 1;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+            url('img/bg login.png') center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .right-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+            max-width: 500px;
+        }
+        h1 {
+            color: #1a3b34;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #f5f5f5;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #8bc34a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-link a {
+            color: #1a3b34;
+            text-decoration: none;
+        }
+
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .social-button {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            color: #333;
+            font-size: 14px;
+            margin: 2px 0; /* Ubah margin menjadi 5px 0 untuk mengurangi jarak vertikal */
+        }
+        .social-button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .left-section {
+                height: 200px;
+            }
+            
+            .right-section {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="left-section">
+        <div class="logo">
+            <img src="img/logo.png">
+        </div>
+    </div>
+    <div class="right-section">
+        <h1>Buat Akun</h1>
+        <form id="signupForm">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="fullName" placeholder="Masukkan Nama Lengkap" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Masukkan Email" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Masukkan Password" required>
+            </div>
+            <button type="submit">Buat Akun</button>
+        </form>
+        <div class="login-link">
+            Sudah memiliki akun? <a href="login.html" id="loginLink">Log In</a>
+        </div>
+        <div class="social-buttons">
+            <button class="social-button" onclick="loginWithGoogle()">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48cGF0aCBmaWxsPSIjNDI4NWY0IiBkPSJNMTcuNjQgOC4yYzAtLjYzLS4wNi0xLjI1LS4xNi0xLjg1SDl2My41aDQuODRhNC4xNCA0LjE0IDAgMCAxLTEuNzkgMi43MnYyLjI2aDIuOWMxLjcxLTEuNTcgMi43LTMuODggMi43LTYuNjN6Ii8+PHBhdGggZmlsbD0iIzM0YTg1MyIgZD0iTTkgMThjMi40MyAwIDQuNDctLjggNS45Ni0yLjE4bC0yLjktMi4yNmMtLjguNTQtMS44My44Ni0zLjA2Ljg2LTIuMzUgMC00LjM1LTEuNTktNS4wNy0zLjc0SDEuMDV2Mi4zM0EzIDkgMCAwIDAgOSAxOHoiLz48cGF0aCBmaWxsPSIjZmJiYzA1IiBkPSJNMy45NSAxMC42OGMtLjE4LS41NC0uMjgtMS4xMy0uMjgtMS43MnMuMS0xLjE4LjI4LTEuNzJWNC45NUgxLjA1QTkgOSAwIDAgMCAwIDljMCAxLjQ1LjM0IDIuODIuOTQgNC4wNWwyLjAxLTIuMzd6Ii8+PHBhdGggZmlsbD0iI2VhNDMzNSIgZD0iTTkgMy41OGMxLjMyIDAgMi41LjQ1IDMuNDQgMS4zNWwyLjU4LTIuNThDMTMuNDcuODkgMTEuNDMgMCA5IDAgNS40OCAwIDIuNDQgMi4wMi45NCA0Ljk1bDIuMDEgMi4zN0MzLjY1IDUuMTcgNS42NSAzLjU4IDkgMy41OHoiLz48L3N2Zz4=" alt="Google">
+                Sign up with Google
+            </button>
+            <button class="social-button" onclick="loginWithFacebook()">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48cGF0aCBmaWxsPSIjMTk3N2YyIiBkPSJNMTggOUMxOCA0LjAzIDEzLjk3IDAgOSAwUzAgNC4wMyAwIDlzNC4wMyA5IDkgOWMyLjQgMCA0LjYtLjkgNi4zLTIuNGwuMS0uMWMxLjctMS42IDIuNi0zLjcgMi42LTYuNXoiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTIuNSA5LjJoLTJ2Ny4zSDcuOFY5LjJINi4zVjYuOGgxLjVWNS4zYzAtMS4zLjYtMy4zIDMuMy0zLjNoMi40djIuN2gtMS43Yy0uMyAwLS43LjEtLjcuOHYxLjNoMi41bC0uMSAyLjR6Ii8+PC9zdmc+" alt="Facebook">
+                Sign up with Facebook
+            </button>
+            <button class="social-button" onclick="loginWithApple()">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48cGF0aCBkPSJNMTUuNDQgMTQuODVjLS44IDEuMi0xLjY4IDIuNC0yLjk3IDIuNDMtMS4zLjAzLTEuNzItLjc3LTMuMi0uNzctMS40OCAwLTEuOTQuNzUtMy4yLjgtMS4zLjAzLTIuMy0xLjMtMy4xLTIuNUMxLjEgMTIuMy0uMSA4LjYuMDEgNS4xYy4wNC0xLjggMS40LTMuNCAzLjItMy44IDEuMy0uMyAyLjUuNCAzLjMuNy44LjMgMS42LjggMi40LjctLjEtMS4xLS43LTIuMi0uMi0zLjVDOS42LjIgMTAuOCAwIDExLjQuMWMxLjkuNCAzLjEgMiAzLjQgNC0yIC4yLTMuNSAxLjgtMy4zIDMuOC4yIDEuOCAxLjcgMyAzLjUgMi41LjUtMi4yIDEuNC00LjQgNC01LjUuMyAxLjkuNSAzLjktLjEgNS45LS42IDEuOS0xLjcgMy44LTMuNCA0WiIvPjwvc3ZnPg==" alt="Apple">
+                Sign up with Apple
+            </button>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        // Database simulation using localStorage
+        const db = {
+            users: JSON.parse(localStorage.getItem('users')) || []
+        };
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userData = {
+                id: Date.now(),
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+        
+            if (db.users.some(user => user.email === userData.email)) {
+                alert('Email already registered!');
+                return;
+            }
+        
+            db.users.push(userData);
+            localStorage.setItem('users', JSON.stringify(db.users));
+            this.reset();
+            alert('Account created successfully!');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
