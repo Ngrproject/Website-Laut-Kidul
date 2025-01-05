@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="img/favicon.ico" rel="icon">
+    <!-- Add Nunito font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif !important;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        /* Profile Title Styles */
+        .profile-title {
+            text-align: center;
+            padding: 0px 0;
+            margin-top: 0px;
+            font-family: 'Nunito', sans-serif;
+            color: #2d3748;
+        }
+
+        .profile-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .profile-title .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            color: #718096;
+            font-size: 1rem;
+        }
+
+        .profile-title .breadcrumb span {
+            color: #00bfff;
+        }
+
+        /* Navbar styles */
+        .navbar-light .navbar-nav .nav-link {
+            font-family: 'Nunito', sans-serif;
+            position: relative;
+            margin-right: 25px;
+            padding: 35px 0;
+            color: #000000 !important;
+            font-size: 18px;
+            font-weight: 545;
+            outline: none;
+            transition: .5s;
+        }
+        
+        .sticky-top.navbar-light .navbar-nav .nav-link {
+            padding: 20px 0;
+            color: var(--dark) !important;
+        }
+        
+        .navbar-light .navbar-nav .nav-link:hover,
+        .navbar-light .navbar-nav .nav-link.active {
+            color: #00bfff !important;
+        }
+
+        /* Profile Container Styles */
+        .profile-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #39ff71, #008c15);
+            padding: 40px;
+            color: white;
+            position: relative;
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .edit-icon {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: #8BC34A;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            border: 2px solid white;
+            transition: transform 0.2s;
+        }
+
+        .edit-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .profile-form {
+            padding: 40px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: #f8f9fa;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00bfff;
+            background-color: white;
+        }
+
+        .save-button {
+            background: linear-gradient(135deg, #1eff38, #4bc400);
+            color: white;
+            border: none;
+            padding: 14px 48px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.2s;
+            margin-top: 20px;
+            float: right;
+        }
+
+        .save-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                margin: 20px 20px 40px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-title {
+                margin-top: 80px;
+                padding: 15px;
+            }
+
+            .profile-title h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="" class="navbar-brand p-0">
+                <img src="img/logo.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="surumanis.html" class="nav-item nav-link">Surumanis</a>
+                    <a href="lampon.html" class="nav-item nav-link">Lampon</a>
+                    <a href="gebyuran.html" class="nav-item nav-link">Gebyuran</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Booking</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="tiket.html" class="dropdown-item">Tiket</a>
+                            <a href="booking.html" class="dropdown-item">Penginapan</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div>
+                <a href="profil.html" class="btn btn-primary rounded-pill py-2 px-4">Profil</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Profile Title Section -->
+    <div class="profile-title">
+        <h1>Profile</h1>
+        <div class="breadcrumb">
+            <p>Home / <span>Profile</span></p>
+        </div>
+    </div>
+
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-image-container">
+                <div class="profile-image">
+                    <img src="img/testimonial-1.jpg" alt="Profile picture">
+                </div>
+                <div class="edit-icon">✏️</div>
+            </div>
+        </div>
+
+        <form class="profile-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" value="Umar Bakrie">
+                </div>
+
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" value="UB112">
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" value="Soetarjo74@yahoo.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" value="********">
+                </div>
+
+                <div class="form-group">
+                    <label>Tanggal Lahir</label>
+                    <input type="text" value="11 January 1990">
+                </div>
+
+                <div class="form-group">
+                    <label>Jenis Akun</label>
+                    <input type="text" value="Pengelola">
+                </div>
+
+                <div class="form-group">
+                    <label>NIP</label>
+                    <input type="text" value="230202744">
+                </div>
+
+                <div class="form-group">
+                    <label>Jabatan</label>
+                    <input type="text" value="Pengelola Website">
+                </div>
+            </div>
+
+            <button type="button" class="save-button">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

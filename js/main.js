@@ -97,3 +97,56 @@
 
 })(jQuery);
 
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.rating .fa-star');
+    let selectedRating = 0;
+
+    stars.forEach((star, index) => {
+        // Hover effect
+        star.addEventListener('mouseover', function() {
+            resetStars();
+            for (let i = 0; i <= index; i++) {
+                stars[i].classList.remove('far');
+                stars[i].classList.add('fas');
+            }
+        });
+
+        // Mouse leave effect
+        star.addEventListener('mouseleave', function() {
+            resetStars();
+            for (let i = 0; i < selectedRating; i++) {
+                stars[i].classList.remove('far');
+                stars[i].classList.add('fas');
+            }
+        });
+
+        // Click effect
+        star.addEventListener('click', function() {
+            selectedRating = index + 1;
+            resetStars();
+            for (let i = 0; i < selectedRating; i++) {
+                stars[i].classList.remove('far');
+                stars[i].classList.add('fas');
+            }
+            // You can add a hidden input to store the rating value
+            const ratingInput = document.getElementById('rating-value') || createHiddenInput();
+            ratingInput.value = selectedRating;
+        });
+    });
+
+    function resetStars() {
+        stars.forEach(star => {
+            star.classList.remove('fas');
+            star.classList.add('far');
+        });
+    }
+
+    function createHiddenInput() {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.id = 'rating-value';
+        input.name = 'rating';
+        document.querySelector('.rating').appendChild(input);
+        return input;
+    }
+});
